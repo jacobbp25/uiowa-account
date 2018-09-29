@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UiowaAccountComponent } from './uiowa-account.component';
+import { AccountStringComponent } from './account-string.component';
 
-describe('UiowaAccountComponent', () => {
-  let component: UiowaAccountComponent;
-  let fixture: ComponentFixture<UiowaAccountComponent>;
+describe('AccountStringComponent', () => {
+  let component: AccountStringComponent;
+  let fixture: ComponentFixture<AccountStringComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UiowaAccountComponent ]
+      declarations: [ AccountStringComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UiowaAccountComponent);
+    fixture = TestBed.createComponent(AccountStringComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

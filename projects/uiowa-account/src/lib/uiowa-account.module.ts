@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { UiowaAccountComponent } from './uiowa-account.component';
+import { AccountStringComponent } from './account-string/account-string.component';
 
 @NgModule({
-  imports: [
-  ],
-  declarations: [UiowaAccountComponent],
-  exports: [UiowaAccountComponent]
+  imports: [],
+  declarations: [AccountStringComponent],
+  exports: [AccountStringComponent]
 })
-export class UiowaAccountModule { }
+export class UiowaAccountModule {}
