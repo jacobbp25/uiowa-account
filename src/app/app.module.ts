@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 import { UiowaAccountModule } from 'projects/uiowa-account/src/public_api';
+// import { UiowaAccountModule } from '@uiowa/uiowa-account';
 
 @NgModule({
   declarations: [AppComponent],
