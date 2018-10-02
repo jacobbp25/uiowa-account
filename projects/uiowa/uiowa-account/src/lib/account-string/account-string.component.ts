@@ -5,22 +5,23 @@ import { Account } from '../models/account';
   // tslint:disable-next-line:component-selector
   selector: 'uiowa-account-string',
   template: `
-  <span *ngFor="let element of account.Elements; let i = index"
-  [attr.data-index]="i" placement="bottom" ngbTooltip="{{element.Display}}">{{account.getElementString(i)}}<span
-    *ngIf="account.showDelimeter(i)">{{account.Delimiter}}</span></span>
+  <span *ngFor="let element of output" placement="bottom" ngbTooltip="{{element.display}}">{{element.value}}<span
+    *ngIf="element.showDelimeter">{{account.delimiter}}</span></span>
   `
 })
 export class AccountStringComponent implements OnInit {
   @Input()
   account: Account;
-  test: Account;
   constructor() {}
 
+  output = [];
   ngOnInit() {
-    this.test = new Account(
-      this.account.Value,
-      this.account.Delimiter,
-      this.account.Elements
-    );
+    this.account.elements.forEach((element, index) => {
+      this.output.push({
+        value: this.account.getElementString(index),
+        display: element.display,
+        showDelimeter: this.account.showDelimeter(index)
+      });
+    });
   }
 }

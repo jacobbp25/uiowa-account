@@ -1,8 +1,8 @@
 export class Element {
-  Display: string;
-  Size: number;
-  WebApiProperty: string;
-  IsRequired: boolean;
+  display: string;
+  size: number;
+  webApiProperty: string;
+  isRequired: boolean;
 
   constructor(
     display: string,
@@ -10,9 +10,9 @@ export class Element {
     webapiproperty: string = null,
     isRequired: boolean
   ) {
-    this.Display = display;
-    this.Size = size;
-    this.WebApiProperty = webapiproperty;
-    this.IsRequired = isRequired;
+    this.display = display;
+    this.size = size;
+    this.webApiProperty = webapiproperty;
+    this.isRequired = isRequired;
   }
 }
