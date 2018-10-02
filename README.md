@@ -5,12 +5,10 @@
 ##To Do
 
 - Travis-ci
-- npm push
 - demo on firebaseapp.com?
 - form version account-input
 - favorite integration account-favorite
 - tests
-- publish on npm
 
 ## Features
 
