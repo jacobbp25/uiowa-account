@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Account, Element } from 'projects/uiowa-account/src/public_api';
+import { Account, Element } from 'projects/uiowa/uiowa-account/src/public_api';
 
 @Component({
   selector: 'app-root',

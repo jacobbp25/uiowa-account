@@ -29,12 +29,10 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
+              "fileReplacements": [{
+                "replace": "src/environments/environment.ts",
+                "with": "src/environments/environment.prod.ts"
+              }],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -122,38 +120,38 @@
         }
       }
     },
-    "uiowa-account": {
-      "root": "projects/uiowa-account",
-      "sourceRoot": "projects/uiowa-account/src",
+    "@uiowa/uiowa-account": {
+      "root": "projects/uiowa/uiowa-account",
+      "sourceRoot": "projects/uiowa/uiowa-account/src",
       "projectType": "library",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/uiowa-account/tsconfig.lib.json",
-            "project": "projects/uiowa-account/ng-package.json"
+            "tsConfig": "projects/uiowa/uiowa-account/tsconfig.lib.json",
+            "project": "projects/uiowa/uiowa-account/ng-package.json"
           },
           "configurations": {
             "production": {
-              "project": "projects/uiowa-account/ng-package.prod.json"
+              "project": "projects/uiowa/uiowa-account/ng-package.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/uiowa-account/src/test.ts",
-            "tsConfig": "projects/uiowa-account/tsconfig.spec.json",
-            "karmaConfig": "projects/uiowa-account/karma.conf.js"
+            "main": "projects/uiowa/uiowa-account/src/test.ts",
+            "tsConfig": "projects/uiowa/uiowa-account/tsconfig.spec.json",
+            "karmaConfig": "projects/uiowa/uiowa-account/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/uiowa-account/tsconfig.lib.json",
-              "projects/uiowa-account/tsconfig.spec.json"
+              "projects/uiowa/uiowa-account/tsconfig.lib.json",
+              "projects/uiowa/uiowa-account/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
