@@ -2,10 +2,13 @@
 
 `uiowa-account` is an Angular Library for account input and display. It was build to be used with the common use cases for UI MFK and UNI Account. The library has a peer dependency on Angular >= 6, ng-bootstrap >= 2, bootstrap 4 (css) and @uiowa/digit-only as of October 2018.
 
+[![Build Status](https://travis-ci.org/jacobbp25/uiowa-account.svg?branch=master)](https://travis-ci.org/jacobbp25/uiowa-account)
+[![npm](https://img.shields.io/npm/v/@uiowa/uiowa-account.svg?style=flat-square)](https://www.npmjs.com/package/@uiowa/uiowa-account)
+
+## [Demo](https://uiowa-account.firebaseapp.com)
+
 ##To Do
 
-- Travis-ci
-- demo on firebaseapp.com?
 - form version account-input
 - favorite integration account-favorite
 - tests

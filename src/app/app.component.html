@@ -1,5 +1,6 @@
 <div class="container my-5">
   <h1>UIOWA-Account-String Examples</h1>
+  <h2>Hover over elements to see description</h2>
   <div class="row">
     <h2>UI Account with no IACCT</h2>
     <div class="col-12">
@@ -15,16 +16,23 @@
   </div>
 
   <div class="row">
-    <h2>UNI Account with no OBJ</h2>
+    <h2>UNI Account with no OBJ and no UNI Foundation</h2>
     <div class="col-12">
       <uiowa-account-string [account]="accountUni"></uiowa-account-string>
     </div>
   </div>
 
   <div class="row">
-    <h2>UNI Account with OBJ</h2>
+    <h2>UNI Account with no OBJ but has Foundation</h2>
     <div class="col-12">
       <uiowa-account-string [account]="accountUni2"></uiowa-account-string>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>UNI Account with OBJ and Foundation</h2>
+    <div class="col-12">
+      <uiowa-account-string [account]="accountUni3"></uiowa-account-string>
     </div>
   </div>
 </div>

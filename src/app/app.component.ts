@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Account, Element } from 'projects/uiowa/uiowa-account/src/public_api';
+// import { Account, Element } from 'projects/uiowa/uiowa-account/src/public_api';
+import { Account, Element } from '@uiowa/uiowa-account';
 
 @Component({
   selector: 'app-root',
@@ -50,6 +51,12 @@ export class AppComponent {
 
   accountUni2 = new Account(
     '3011-00-39045--0000-91-0000-000-123456-',
+    '-',
+    this.uniConfig
+  );
+
+  accountUni3 = new Account(
+    '3011-00-39045-12345-0000-91-0000-000-123456-',
     '-',
     this.uniConfig
   );

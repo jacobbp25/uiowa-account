@@ -18,13 +18,13 @@
       "dom"
     ],
     "paths": {
-      "uiowa-account": [
-        "dist/uiowa-account",
-        "dist/uiowa-account"
+      "@uiowa/uiowa-account": [
+        "dist/uiowa/uiowa-account",
+        "dist/uiowa/uiowa-account"
       ],
-      "uiowa-account/*": [
-        "dist/uiowa-account/*",
-        "dist/uiowa-account/*"
+      "@uiowa/uiowa-account/*": [
+        "dist/uiowa/uiowa-account/*",
+        "dist/uiowa/uiowa-account/*"
       ]
     }
   }

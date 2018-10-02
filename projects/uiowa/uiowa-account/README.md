@@ -2,10 +2,13 @@
 
 An Angular library for using UIOWA MFK or UNI Account forms, output and favorites. Dependencies: Angular, ng-bootstrap, Bootstrap 4 (css)
 
+[![Build Status](https://travis-ci.org/jacobbp25/uiowa-account.svg?branch=master)](https://travis-ci.org/jacobbp25/uiowa-account)
+[![npm](https://img.shields.io/npm/v/@uiowa/uiowa-account.svg?style=flat-square)](https://www.npmjs.com/package/@uiowa/uiowa-account)
+
+## [Demo](https://uiowa-account.firebaseapp.com)
+
 ##To Do
 
-- Travis-ci
-- demo on firebaseapp.com?
 - form version account-input
 - favorite integration account-favorite
 - tests
