@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// import { Account, Element } from 'projects/uiowa/uiowa-account/src/public_api';
-import { Account, Element } from '@uiowa/uiowa-account';
+// import { Account, Element, FieldOption} from 'projects/uiowa/uiowa-account/src/public_api';
+import { Account, Element, FieldOption } from '@uiowa/uiowa-account';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +20,9 @@ export class AppComponent {
     new Element('FNC', 2, 'FuncElem', true),
     new Element('CCTR', 4, 'CostCtrElem', true)
   ];
+
+  uiOptions = [new FieldOption('IAcctElem', 'YYYY')];
+
   uniConfig = [
     new Element('Fnd', 4, 'FundElem', true),
     new Element('AY', 2, 'AppYearElm', true),
@@ -31,6 +34,8 @@ export class AppComponent {
     new Element('Line', 3, 'LineElem', true),
     new Element('UNI Fndn', 6, 'FoundElem', false)
   ];
+
+  uniOptions = [new FieldOption('ObjectElem', 'ZZZZZ')];
 
   account = new Account(
     '240-17-3215-03000-53515806--999-00000-21-7474-',
@@ -59,5 +64,11 @@ export class AppComponent {
     '3011-00-39045-12345-0000-91-0000-000-123456-',
     '-',
     this.uniConfig
+  );
+
+  account4 = new Account(
+    '050-17-3000-99000-53370350-6070-000-00000-40-0000',
+    '-',
+    this.uiConfig
   );
 }

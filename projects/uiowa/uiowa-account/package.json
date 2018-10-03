@@ -1,6 +1,6 @@
 {
   "name": "@uiowa/uiowa-account",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Jacob Feuerbach <jacob-feuerbach@uiowa.edu>",
   "description": "Angular library to manage MFK and UNI Account output",
   "keywords": [

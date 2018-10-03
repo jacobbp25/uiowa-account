@@ -16,6 +16,13 @@
   </div>
 
   <div class="row">
+    <h2>MFK from with option to YYYY out IACCT</h2>
+    <div class="col-12">
+      <uiowa-account-string [account]="account4" [options]="uiOptions"></uiowa-account-string>
+    </div>
+  </div>
+
+  <div class="row">
     <h2>UNI Account with no OBJ and no UNI Foundation</h2>
     <div class="col-12">
       <uiowa-account-string [account]="accountUni"></uiowa-account-string>
@@ -33,6 +40,13 @@
     <h2>UNI Account with OBJ and Foundation</h2>
     <div class="col-12">
       <uiowa-account-string [account]="accountUni3"></uiowa-account-string>
+    </div>
+  </div>
+
+  <div class="row">
+    <h2>UNI Account with OBJ to ZZZZZ and Foundation</h2>
+    <div class="col-12">
+      <uiowa-account-string [account]="accountUni3" [options]="uniOptions"></uiowa-account-string>
     </div>
   </div>
 </div>
