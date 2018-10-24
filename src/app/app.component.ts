@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// import { Account, Element, FieldOption} from 'projects/uiowa/uiowa-account/src/public_api';
-import { Account, Element, FieldOption } from '@uiowa/uiowa-account';
+import { Account, Element, FieldOption } from 'projects/uiowa/uiowa-account/src/public_api';
+// import { Account, Element, FieldOption } from '@uiowa/uiowa-account';
 
 @Component({
   selector: 'app-root',
@@ -37,38 +37,14 @@ export class AppComponent {
 
   uniOptions = [new FieldOption('ObjectElem', 'ZZZZZ')];
 
-  account = new Account(
-    '240-17-3215-03000-53515806--999-00000-21-7474-',
-    '-',
-    this.uiConfig
-  );
-  account2 = new Account(
-    '240-17-3215-03000-53515806-6070-999-00000-21-7474-',
-    '-',
-    this.uiConfig
-  );
+  account = new Account('240-17-3215-03000-53515806--999-00000-21-7474-', '-', this.uiConfig);
+  account2 = new Account('240-17-3215-03000-53515806-6070-999-00000-21-7474-', '-', this.uiConfig);
 
-  accountUni = new Account(
-    '3011-00-39045--0000-91-0000-000-',
-    '-',
-    this.uniConfig
-  );
+  accountUni = new Account('3011-00-39045--0000-91-0000-000-', '-', this.uniConfig);
 
-  accountUni2 = new Account(
-    '3011-00-39045--0000-91-0000-000-123456-',
-    '-',
-    this.uniConfig
-  );
+  accountUni2 = new Account('3011-00-39045--0000-91-0000-000-123456-', '-', this.uniConfig);
 
-  accountUni3 = new Account(
-    '3011-00-39045-12345-0000-91-0000-000-123456-',
-    '-',
-    this.uniConfig
-  );
+  accountUni3 = new Account('3011-00-39045-12345-0000-91-0000-000-123456-', '-', this.uniConfig);
 
-  account4 = new Account(
-    '050-17-3000-99000-53370350-6070-000-00000-40-0000',
-    '-',
-    this.uiConfig
-  );
+  account4 = new Account('050-17-3000-99000-53370350-6070-000-00000-40-0000', '-', this.uiConfig);
 }

@@ -1,0 +1,26 @@
+:host {
+  display: inline-flex;
+}
+
+.account-field {
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: 0.25rem;
+}
+
+.account-field .form-control {
+  padding: 0.375rem !important;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+  font-variant: normal;
+}
+
+label.account-field-label {
+  display: block;
+  font-size: 0.625rem;
+  margin-bottom: 0;
+  text-align: center;
+  white-space: nowrap;
+}

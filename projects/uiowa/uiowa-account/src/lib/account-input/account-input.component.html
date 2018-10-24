@@ -1,0 +1,7 @@
+<div id="account-container">
+  <div class="account-field" *ngFor="let item of output" [style.width.rem]="item.size">
+    <label for="{{item.id}}" class="account-field-label">{{item.display}}</label>
+    <input type="text" class="form-control" [attr.aria-label]="item.name" [attr.name]="item.name" [attr.id]="item.id"
+      [attr.maxlength]="item.size" inputmode="numeric" pattern="[0-9]*" digitOnly />
+  </div>
+</div>
