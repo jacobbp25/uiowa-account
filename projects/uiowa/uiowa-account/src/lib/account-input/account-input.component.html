@@ -1,7 +1,42 @@
-<div id="account-container">
+<!-- <div id="account-container">
   <div class="account-field" *ngFor="let item of output" [style.width.rem]="item.size">
     <label for="{{item.id}}" class="account-field-label">{{item.display}}</label>
     <input type="text" class="form-control" [attr.aria-label]="item.name" [attr.name]="item.name" [attr.id]="item.id"
       [attr.maxlength]="item.size" inputmode="numeric" pattern="[0-9]*" digitOnly />
   </div>
+</div> -->
+
+<!-- <div class="row" id="account-container">
+  {{questions | json}}
+</div> -->
+
+<!-- <div id="account-container">
+  <div class="account-field" *ngFor="let item of questions" [style.width.rem]="item.size">
+    <label for="{{item.id}}" class="account-field-label">{{item.display}}</label>
+    <input type="text" class="form-control" [attr.aria-label]="item.name" [attr.name]="item.name" [attr.id]="item.id"
+      [attr.maxlength]="item.size" inputmode="numeric" pattern="[0-9]*" digitOnly />
+  </div>
+</div> -->
+
+<div>
+  <form (ngSubmit)="null" [formGroup]="form">
+
+    <div *ngFor="let question of questions" class="form-row">
+      <div [formGroup]="form">
+        <label [attr.for]="question.key">{{question.label}}</label>
+
+        <div [ngSwitch]="question.controlType">
+
+          <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType">
+
+        </div>
+
+        <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
 </div>

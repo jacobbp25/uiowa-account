@@ -4,9 +4,10 @@ import { AccountStringComponent } from './account-string/account-string.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AccountInputComponent } from './account-input/account-input.component';
 import { DigitOnlyModule } from '@uiowa/digit-only';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, NgbModule.forRoot(), DigitOnlyModule],
+  imports: [CommonModule, NgbModule.forRoot(), DigitOnlyModule, ReactiveFormsModule, FormsModule],
   declarations: [AccountStringComponent, AccountInputComponent],
   exports: [AccountStringComponent, AccountInputComponent]
 })

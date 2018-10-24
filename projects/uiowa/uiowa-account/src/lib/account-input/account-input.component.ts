@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Account, FieldOption } from '../models';
+import { Account, FieldOption, ElementInputBase, ElementInputText, ElementInputHidden } from '../models';
+import { FormGroup } from '@angular/forms';
+import { InputControlService } from '../input-control.service';
 
 @Component({
   selector: 'uiowa-account-input',
   templateUrl: './account-input.component.html',
-  styleUrls: ['./account-input.component.css']
+  styleUrls: ['./account-input.component.css'],
+  providers: [InputControlService]
 })
 export class AccountInputComponent implements OnInit {
   @Input()
@@ -14,20 +17,51 @@ export class AccountInputComponent implements OnInit {
   @Input()
   index?: number = 0;
 
-  output = [];
-  constructor() {}
+  //output = [];
+  questions: ElementInputBase<any>[] = [];
+  form: FormGroup;
+
+  constructor(private ics: InputControlService) {}
 
   ngOnInit() {
-    this.account.elements.forEach((element, index) => {
-      this.output.push({
-        value: this.getElementOutput(element.webApiProperty, index),
-        display: element.display,
-        size: element.size,
-        showDelimeter: this.account.showDelimeter(index),
-        name: element.webApiProperty,
-        id: element.webApiProperty + '_' + this.index
-      });
+    // this.account.elements.forEach((element, index) => {
+    //   this.output.push({
+    //     value: this.getElementOutput(element.webApiProperty, index),
+    //     display: element.display,
+    //     size: element.size,
+    //     showDelimeter: this.account.showDelimeter(index),
+    //     name: element.webApiProperty,
+    //     id: element.webApiProperty + '_' + this.index
+    //   });
+    // });
+
+    this.account.elements.forEach((element, loopIndex) => {
+      if (this.options.find(x => x.name === element.webApiProperty)) {
+        let hiddenOption = this.options.find(x => x.name === element.webApiProperty);
+        this.questions.push(
+          new ElementInputHidden({
+            value: hiddenOption.defaultValue,
+            label: element.display,
+            key: element.webApiProperty + '_' + this.index
+          })
+        );
+      } else {
+        this.questions.push(
+          new ElementInputText({
+            value: this.getElementOutput(element.webApiProperty, loopIndex),
+            label: element.display,
+            key: element.webApiProperty + '_' + this.index,
+            size: element.size,
+            name: element.webApiProperty,
+            id: element.webApiProperty + '_' + this.index
+          })
+        );
+      }
     });
+
+    this.form = this.ics.toFormGroup(this.questions);
+
+    console.log(this.form);
   }
 
   private getOverrideValue(property: string): string {
@@ -47,39 +81,39 @@ export class AccountInputComponent implements OnInit {
     return this.account.getElementString(index);
   }
 
-  paste(e: ClipboardEvent) {
-    const pastedInput: string = e.clipboardData.getData('text/plain').replace(/\D/g, ''); // get a digit-only string
-    e.preventDefault();
-    if (!pastedInput) {
-      return;
-    }
-    if (pastedInput.length < 40) {
-      document.execCommand('insertText', false, pastedInput);
-    } else {
-      this.account.parseString(pastedInput);
-    }
-    this.mfkChange.emit(this.mfk);
-  }
+  // paste(e: ClipboardEvent) {
+  //   const pastedInput: string = e.clipboardData.getData('text/plain').replace(/\D/g, ''); // get a digit-only string
+  //   e.preventDefault();
+  //   if (!pastedInput) {
+  //     return;
+  //   }
+  //   if (pastedInput.length < 40) {
+  //     document.execCommand('insertText', false, pastedInput);
+  //   } else {
+  //     this.account.parseString(pastedInput);
+  //   }
+  //   this.mfkChange.emit(this.mfk);
+  // }
 
-  onKeyup(e: KeyboardEvent) {
-    //this.mfkChange.emit(this.mfk);
-    if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
-      return; // only numbers can trigger auto jump feature.
-    }
-    const currentInputFieldName = e.target['name'];
-    if (this.account[currentInputFieldName].length === e.target['maxLength']) {
-      // auto jump to next input field when current field is full
-      const currentInputFieldIndex = this.options.findIndex(o => o.name === currentInputFieldName);
-      for (let i = currentInputFieldIndex + 1; i < this.options.length; i++) {
-        // if (this.options[i].readonly) {
-        //   continue;
-        // }
-        const nextInputField = this.mfkInputFields.find(v => v.el.nativeElement['name'] === this.options[i].name);
-        nextInputField.el.nativeElement.focus();
-        break;
-      }
-    }
-  }
+  // onKeyup(e: KeyboardEvent) {
+  //   //this.mfkChange.emit(this.mfk);
+  //   if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+  //     return; // only numbers can trigger auto jump feature.
+  //   }
+  //   const currentInputFieldName = e.target['name'];
+  //   if (this.account[currentInputFieldName].length === e.target['maxLength']) {
+  //     // auto jump to next input field when current field is full
+  //     const currentInputFieldIndex = this.options.findIndex(o => o.name === currentInputFieldName);
+  //     for (let i = currentInputFieldIndex + 1; i < this.options.length; i++) {
+  //       // if (this.options[i].readonly) {
+  //       //   continue;
+  //       // }
+  //       const nextInputField = this.mfkInputFields.find(v => v.el.nativeElement['name'] === this.options[i].name);
+  //       nextInputField.el.nativeElement.focus();
+  //       break;
+  //     }
+  //   }
+  // }
 
   onKeydown(e: KeyboardEvent) {
     // handle "tab" key --> auto fill '0's if the input field has not completed
