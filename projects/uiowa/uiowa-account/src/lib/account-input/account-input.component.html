@@ -18,25 +18,22 @@
   </div>
 </div> -->
 
-<div>
+<div id="account-container">
   <form (ngSubmit)="null" [formGroup]="form">
-
-    <div *ngFor="let question of questions" class="form-row">
+    <div *ngFor="let question of questions" class="account-field" [style.width.rem]="question.size">
       <div [formGroup]="form">
-        <label [attr.for]="question.key">{{question.label}}</label>
+        <label [attr.for]="question.key" class="account-field-label">{{question.label}}</label>
 
-        <div [ngSwitch]="question.controlType">
+        <div [ngSwitch]="question.controlType" [ngClass]="{hiddenLabel: question.controlType === 'hidden'}">
 
-          <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType">
-
+          <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType"
+            [attr.maxlength]="6" [style.width.rem]="question.size" [attr.maxlength]="question.size" inputmode="numeric"
+            pattern="[0-9]*" digitOnly class="form-control">
+          <input *ngSwitchCase="'hidden'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType"
+            [attr.maxlength]="6" [style.width.rem]="question.size">
+          <span *ngSwitchCase="'hidden'">{{question.display}}</span>
         </div>
-
-        <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
       </div>
-    </div>
-
-    <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
     </div>
   </form>
 </div>

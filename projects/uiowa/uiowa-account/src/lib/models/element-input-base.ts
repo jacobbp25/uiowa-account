@@ -6,6 +6,8 @@ export class ElementInputBase<T> {
   order: number;
   controlType: string;
   id: string;
+  size: number;
+  display: string;
 
   constructor(
     options: {
@@ -16,6 +18,8 @@ export class ElementInputBase<T> {
       order?: number;
       controlType?: string;
       id?: string;
+      size?: number;
+      display?: string;
     } = {}
   ) {
     this.value = options.value;
@@ -25,5 +29,7 @@ export class ElementInputBase<T> {
     this.order = options.order === undefined ? 1 : options.order;
     this.controlType = options.controlType || '';
     this.id = options.id || '';
+    this.size = options.size || 10;
+    this.display = options.display || '';
   }
 }

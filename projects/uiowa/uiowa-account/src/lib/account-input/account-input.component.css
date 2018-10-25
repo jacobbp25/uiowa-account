@@ -24,3 +24,9 @@ label.account-field-label {
   text-align: center;
   white-space: nowrap;
 }
+
+div.hiddenLabel {
+  margin-top: 7px;
+  text-align: center;
+  padding-bottom: 6px;
+}

@@ -24,17 +24,6 @@ export class AccountInputComponent implements OnInit {
   constructor(private ics: InputControlService) {}
 
   ngOnInit() {
-    // this.account.elements.forEach((element, index) => {
-    //   this.output.push({
-    //     value: this.getElementOutput(element.webApiProperty, index),
-    //     display: element.display,
-    //     size: element.size,
-    //     showDelimeter: this.account.showDelimeter(index),
-    //     name: element.webApiProperty,
-    //     id: element.webApiProperty + '_' + this.index
-    //   });
-    // });
-
     this.account.elements.forEach((element, loopIndex) => {
       if (this.options.find(x => x.name === element.webApiProperty)) {
         let hiddenOption = this.options.find(x => x.name === element.webApiProperty);
@@ -42,13 +31,15 @@ export class AccountInputComponent implements OnInit {
           new ElementInputHidden({
             value: hiddenOption.defaultValue,
             label: element.display,
-            key: element.webApiProperty + '_' + this.index
+            key: element.webApiProperty + '_' + this.index,
+            size: element.size,
+            display: hiddenOption.display
           })
         );
       } else {
         this.questions.push(
           new ElementInputText({
-            value: this.getElementOutput(element.webApiProperty, loopIndex),
+            value: this.account.getElementString(loopIndex),
             label: element.display,
             key: element.webApiProperty + '_' + this.index,
             size: element.size,
@@ -60,25 +51,6 @@ export class AccountInputComponent implements OnInit {
     });
 
     this.form = this.ics.toFormGroup(this.questions);
-
-    console.log(this.form);
-  }
-
-  private getOverrideValue(property: string): string {
-    let element = this.options.find(x => x.name === property);
-    if (element) {
-      return element.display;
-    }
-  }
-
-  private getElementOutput(property: string, index: number): string {
-    if (this.options.length > 0) {
-      let overrideValue = this.getOverrideValue(property);
-      if (overrideValue) {
-        return overrideValue;
-      }
-    }
-    return this.account.getElementString(index);
   }
 
   // paste(e: ClipboardEvent) {
