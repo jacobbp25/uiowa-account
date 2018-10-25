@@ -9,7 +9,7 @@ import { UiowaAccountModule } from 'projects/uiowa/uiowa-account/src/public_api'
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, NgbModule.forRoot(), UiowaAccountModule],
+  imports: [BrowserModule, NgbModule, UiowaAccountModule],
   providers: [],
   bootstrap: [AppComponent]
 })

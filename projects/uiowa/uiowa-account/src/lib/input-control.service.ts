@@ -8,7 +8,7 @@ export class InputControlService {
   constructor() {}
 
   toFormGroup(questions: ElementInputBase<any>[]) {
-    let group: any = {};
+    const group: any = {};
 
     questions.forEach(question => {
       group[question.key] = question.required

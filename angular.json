@@ -120,7 +120,7 @@
         }
       }
     },
-    "@uiowa/uiowa-account": {
+    "uiowa-uiowa-lib": {
       "root": "projects/uiowa/uiowa-account",
       "sourceRoot": "projects/uiowa/uiowa-account/src",
       "projectType": "library",

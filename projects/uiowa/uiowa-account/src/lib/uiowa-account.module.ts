@@ -7,7 +7,7 @@ import { DigitOnlyModule } from '@uiowa/digit-only';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, NgbModule.forRoot(), DigitOnlyModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, NgbModule, DigitOnlyModule, ReactiveFormsModule, FormsModule],
   declarations: [AccountStringComponent, AccountInputComponent],
   exports: [AccountStringComponent, AccountInputComponent]
 })

@@ -15,9 +15,8 @@ export class AccountInputComponent implements OnInit {
   @Input()
   options?: FieldOption[] = [];
   @Input()
-  index?: number = 0;
+  index = 0;
 
-  //output = [];
   questions: ElementInputBase<any>[] = [];
   form: FormGroup;
 
@@ -26,7 +25,7 @@ export class AccountInputComponent implements OnInit {
   ngOnInit() {
     this.account.elements.forEach((element, loopIndex) => {
       if (this.options.find(x => x.name === element.webApiProperty)) {
-        let hiddenOption = this.options.find(x => x.name === element.webApiProperty);
+        const hiddenOption = this.options.find(x => x.name === element.webApiProperty);
         this.questions.push(
           new ElementInputHidden({
             value: hiddenOption.defaultValue,

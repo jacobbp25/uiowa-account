@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Account, FieldOption } from '../models';
 
 @Component({
-  // tslint:disable-next-line:component-selector
   selector: 'uiowa-account-string',
   template: `
   <span *ngFor="let element of output" placement="bottom" ngbTooltip="{{element.display}}">{{element.value}}<span
@@ -28,7 +27,7 @@ export class AccountStringComponent implements OnInit {
   }
 
   private getOverrideValue(property: string): string {
-    let element = this.options.find(x => x.name === property);
+    const element = this.options.find(x => x.name === property);
     if (element) {
       return element.display;
     }
@@ -36,7 +35,7 @@ export class AccountStringComponent implements OnInit {
 
   private getElementOutput(property: string, index: number): string {
     if (this.options.length > 0) {
-      let overrideValue = this.getOverrideValue(property);
+      const overrideValue = this.getOverrideValue(property);
       if (overrideValue) {
         return overrideValue;
       }
