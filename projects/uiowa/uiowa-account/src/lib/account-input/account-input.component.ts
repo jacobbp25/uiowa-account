@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, ElementRef, QueryList, AfterViewInit } from '@angular/core';
 import { Account, FieldOption, ElementInputBase, ElementInputText, ElementInputHidden } from '../models';
 import { FormGroup } from '@angular/forms';
 import { InputControlService } from '../input-control.service';
+import { DigitOnlyDirective } from '@uiowa/digit-only';
 
 @Component({
   selector: 'uiowa-account-input',
@@ -9,7 +10,7 @@ import { InputControlService } from '../input-control.service';
   styleUrls: ['./account-input.component.css'],
   providers: [InputControlService]
 })
-export class AccountInputComponent implements OnInit {
+export class AccountInputComponent implements OnInit, AfterViewInit {
   @Input()
   account: Account;
   @Input()
@@ -17,10 +18,17 @@ export class AccountInputComponent implements OnInit {
   @Input()
   index = 0;
 
+  @Output()
+  accountChange = new EventEmitter<string>();
+
+  @ViewChildren(DigitOnlyDirective)
+  formInputs: QueryList<DigitOnlyDirective>;
+
   questions: ElementInputBase<any>[] = [];
   form: FormGroup;
+  accountString: string;
 
-  constructor(private ics: InputControlService) {}
+  constructor(private inputControlService: InputControlService) {}
 
   ngOnInit() {
     this.account.elements.forEach((element, loopIndex) => {
@@ -49,54 +57,70 @@ export class AccountInputComponent implements OnInit {
       }
     });
 
-    this.form = this.ics.toFormGroup(this.questions);
+    this.form = this.inputControlService.toFormGroup(this.questions);
+    this.accountString = this.parse(this.questions, this.account.delimiter);
   }
 
-  // paste(e: ClipboardEvent) {
-  //   const pastedInput: string = e.clipboardData.getData('text/plain').replace(/\D/g, ''); // get a digit-only string
-  //   e.preventDefault();
-  //   if (!pastedInput) {
-  //     return;
-  //   }
-  //   if (pastedInput.length < 40) {
-  //     document.execCommand('insertText', false, pastedInput);
-  //   } else {
-  //     this.account.parseString(pastedInput);
-  //   }
-  //   this.mfkChange.emit(this.mfk);
-  // }
+  private parseAccount(): string {
+    return this.parse(this.questions, this.account.delimiter);
+  }
 
-  // onKeyup(e: KeyboardEvent) {
-  //   //this.mfkChange.emit(this.mfk);
-  //   if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
-  //     return; // only numbers can trigger auto jump feature.
-  //   }
-  //   const currentInputFieldName = e.target['name'];
-  //   if (this.account[currentInputFieldName].length === e.target['maxLength']) {
-  //     // auto jump to next input field when current field is full
-  //     const currentInputFieldIndex = this.options.findIndex(o => o.name === currentInputFieldName);
-  //     for (let i = currentInputFieldIndex + 1; i < this.options.length; i++) {
-  //       // if (this.options[i].readonly) {
-  //       //   continue;
-  //       // }
-  //       const nextInputField = this.mfkInputFields.find(v => v.el.nativeElement['name'] === this.options[i].name);
-  //       nextInputField.el.nativeElement.focus();
-  //       break;
-  //     }
-  //   }
-  // }
+  private parse(questions: ElementInputBase<any>[], delimeter: string): string {
+    let accountString = '';
+    questions.forEach((x, index) => {
+      accountString += x.value;
+      if (this.account.showDelimeter(index, true)) {
+        accountString += delimeter;
+      }
+    });
+    return accountString;
+  }
+
+  ngAfterViewInit(): void {
+    // console.log(this.formInputs);
+  }
+
+  onKeyup(e: KeyboardEvent) {
+    this.accountChange.emit(this.parseAccount());
+    if ((e.keyCode < 48 || e.keyCode > 57) && (e.keyCode < 96 || e.keyCode > 105)) {
+      return; // only numbers can trigger auto jump feature.
+    }
+    const currentInputId = e.target['id'];
+    if (this.form.controls[currentInputId].value.length === e.target['maxLength']) {
+      const currentQuestionIndex = this.questions.findIndex(x => x.key === currentInputId);
+      for (let i = currentQuestionIndex + 1; i < this.questions.length; i++) {
+        if (this.questions[i].controlType === 'hidden') {
+          continue;
+        }
+        const nextInput = this.questions[i];
+        const nextInputField = this.formInputs.find(v => v.el.nativeElement['id'] === nextInput.key);
+        nextInputField.el.nativeElement.focus();
+        break;
+      }
+    }
+  }
 
   onKeydown(e: KeyboardEvent) {
-    // handle "tab" key --> auto fill '0's if the input field has not completed
     if (e.keyCode !== 9) {
       return;
     }
     if (e.target['readOnly']) {
       return;
     }
-    const maxlength = e.target['maxLength'];
-    while (this.account[e.target['name']].length < maxlength) {
-      this.account[e.target['name']] = this.account[e.target['name']].concat('0');
+
+    while (this.form.controls[e.target['id']].value.length < e.target['maxLength']) {
+      this.form.controls[e.target['id']].patchValue(this.form.controls[e.target['id']].value.concat(0));
     }
   }
 }
+
+// const targetElement = e.target['id'].split('_')[0];
+// const accountElement = this.account.elements.filter(x => x.webApiProperty === targetElement)[0];
+//    console.log(accountElement);
+//    console.log(targetElement);
+// const question = this.questions.filter(x => x.key === e.target['id'])[0];
+// console.log(question);
+// question.value = 123;
+// console.log(question);
+
+// handle "tab" key --> auto fill '0's if the input field has not completed

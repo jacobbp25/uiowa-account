@@ -8,12 +8,7 @@ export class Account {
 
   private valueAry: string[];
 
-  constructor(
-    value: string = null,
-    delimiter: string = '-',
-    elements: Element[] = [],
-    defaultString: string = 'X'
-  ) {
+  constructor(value: string = null, delimiter: string = '-', elements: Element[] = [], defaultString: string = 'X') {
     this.elements = elements;
     this.value = value;
     this.delimiter = delimiter;
@@ -34,8 +29,8 @@ export class Account {
     return value;
   }
 
-  showDelimeter(index: number): boolean {
-    if (this.lastElementIsOptionalAndEmpty(index)) {
+  showDelimeter(index: number, leaveOptionalEnd: boolean = false): boolean {
+    if (this.lastElementIsOptionalAndEmpty(index) && !leaveOptionalEnd) {
       return false;
     }
     if (!this.indexIsTheLastElement(index)) {
@@ -43,6 +38,7 @@ export class Account {
     }
     return false;
   }
+
   private indexIsTheLastElement(index: number): boolean {
     return index === this.elements.length - 1;
   }

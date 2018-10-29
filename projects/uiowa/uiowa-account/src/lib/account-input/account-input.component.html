@@ -1,36 +1,16 @@
-<!-- <div id="account-container">
-  <div class="account-field" *ngFor="let item of output" [style.width.rem]="item.size">
-    <label for="{{item.id}}" class="account-field-label">{{item.display}}</label>
-    <input type="text" class="form-control" [attr.aria-label]="item.name" [attr.name]="item.name" [attr.id]="item.id"
-      [attr.maxlength]="item.size" inputmode="numeric" pattern="[0-9]*" digitOnly />
-  </div>
-</div> -->
-
-<!-- <div class="row" id="account-container">
-  {{questions | json}}
-</div> -->
-
-<!-- <div id="account-container">
-  <div class="account-field" *ngFor="let item of questions" [style.width.rem]="item.size">
-    <label for="{{item.id}}" class="account-field-label">{{item.display}}</label>
-    <input type="text" class="form-control" [attr.aria-label]="item.name" [attr.name]="item.name" [attr.id]="item.id"
-      [attr.maxlength]="item.size" inputmode="numeric" pattern="[0-9]*" digitOnly />
-  </div>
-</div> -->
-
 <div id="account-container">
   <form (ngSubmit)="null" [formGroup]="form">
-    <div *ngFor="let question of questions" class="account-field" [style.width.rem]="question.size">
+    <div *ngFor="let question of questions" class="account-field" [style.width.rem]="question.size + 1">
       <div [formGroup]="form">
         <label [attr.for]="question.key" class="account-field-label">{{question.label}}</label>
 
         <div [ngSwitch]="question.controlType" [ngClass]="{hiddenLabel: question.controlType === 'hidden'}">
 
           <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType"
-            [attr.maxlength]="6" [style.width.rem]="question.size" [attr.maxlength]="question.size" inputmode="numeric"
-            pattern="[0-9]*" digitOnly class="form-control">
+            [attr.maxlength]="question.size" [style.width.rem]="question.size+1" [attr.maxlength]="question.size"
+            inputmode="numeric" pattern="[0-9]*" digitOnly class="form-control" (keydown)="onKeydown($event)" (keyup)="onKeyup($event)">
           <input *ngSwitchCase="'hidden'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType"
-            [attr.maxlength]="6" [style.width.rem]="question.size">
+            [attr.maxlength]="question.size" [style.width.rem]="question.size">
           <span *ngSwitchCase="'hidden'">{{question.display}}</span>
         </div>
       </div>
