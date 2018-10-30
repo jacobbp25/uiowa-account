@@ -7,9 +7,8 @@ An Angular library for using UIOWA MFK or UNI Account forms, output and favorite
 
 ## [Demo](https://uiowa-account.firebaseapp.com)
 
-##To Do
+## To Do
 
-- form version account-input
 - favorite integration account-favorite
 - tests
 
@@ -30,6 +29,7 @@ const account = new Account('240-17-3215-03000-53515806--999-00000-21-7474-', '-
 ## Components
 
 - `<uiowa-account-string></uiowa-account-string>`: Used for outputting string representation of account with tooltips
+- `<uiowa-account-input></uiowa-account-input>`: Used for generating form based on account string MFK or UNI Account
 
 ## Usage
 
