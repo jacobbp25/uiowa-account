@@ -8,7 +8,8 @@
 
           <input *ngSwitchCase="'textbox'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType"
             [attr.maxlength]="question.size" [style.width.rem]="question.size+1" [attr.maxlength]="question.size"
-            inputmode="numeric" pattern="[0-9]*" digitOnly class="form-control" (keydown)="onKeydown($event)" (keyup)="onKeyup($event)">
+            inputmode="numeric" pattern="[0-9]*" digitOnly class="form-control" (keydown)="onKeydown($event)" (keyup)="onKeyup($event)"
+            (paste)="paste($event)">
           <input *ngSwitchCase="'hidden'" [formControlName]="question.key" [id]="question.key" [type]="question.controlType"
             [attr.maxlength]="question.size" [style.width.rem]="question.size">
           <span *ngSwitchCase="'hidden'">{{question.display}}</span>

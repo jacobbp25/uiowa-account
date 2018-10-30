@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, ElementRef, QueryList, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList } from '@angular/core';
 import { Account, FieldOption, ElementInputBase, ElementInputText, ElementInputHidden } from '../models';
 import { FormGroup } from '@angular/forms';
 import { InputControlService } from '../input-control.service';
@@ -10,7 +10,7 @@ import { DigitOnlyDirective } from '@uiowa/digit-only';
   styleUrls: ['./account-input.component.css'],
   providers: [InputControlService]
 })
-export class AccountInputComponent implements OnInit, AfterViewInit {
+export class AccountInputComponent implements OnInit {
   @Input()
   account: Account;
   @Input()
@@ -76,8 +76,32 @@ export class AccountInputComponent implements OnInit, AfterViewInit {
     return accountString;
   }
 
-  ngAfterViewInit(): void {
-    // console.log(this.formInputs);
+  paste(e: ClipboardEvent) {
+    const pastedInput: string = e.clipboardData.getData('text/plain').trim();
+
+    e.preventDefault();
+    if (!pastedInput) {
+      return;
+    }
+
+    this.pasteAccount(pastedInput.split(this.account.delimiter));
+    // this.mfk.parseString(pastedInput);
+    // 3011-00-39045-ZZZZZ-0000-91-0000-000-123456
+
+    this.accountChange.emit(this.parseAccount());
+  }
+
+  private pasteAccount(input: string[]) {
+    input.forEach((x, index) => {
+      if (
+        index + 1 <= this.questions.length &&
+        !(this.questions[index].controlType === 'hidden') &&
+        !isNaN(+x) &&
+        this.questions[index].size === x.trim().length
+      ) {
+        this.form.controls[this.questions[index].id].patchValue(x);
+      }
+    });
   }
 
   onKeyup(e: KeyboardEvent) {
