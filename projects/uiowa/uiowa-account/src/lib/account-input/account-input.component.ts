@@ -40,7 +40,8 @@ export class AccountInputComponent implements OnInit {
             label: element.display,
             key: element.webApiProperty + '_' + this.index,
             size: element.size,
-            display: hiddenOption.display
+            display: hiddenOption.display,
+            id: element.webApiProperty + '_' + this.index
           })
         );
       } else {
@@ -83,11 +84,7 @@ export class AccountInputComponent implements OnInit {
     if (!pastedInput) {
       return;
     }
-
     this.pasteAccount(pastedInput.split(this.account.delimiter));
-    // this.mfk.parseString(pastedInput);
-    // 3011-00-39045-ZZZZZ-0000-91-0000-000-123456
-
     this.accountChange.emit(this.parseAccount());
   }
 
@@ -137,14 +134,3 @@ export class AccountInputComponent implements OnInit {
     }
   }
 }
-
-// const targetElement = e.target['id'].split('_')[0];
-// const accountElement = this.account.elements.filter(x => x.webApiProperty === targetElement)[0];
-//    console.log(accountElement);
-//    console.log(targetElement);
-// const question = this.questions.filter(x => x.key === e.target['id'])[0];
-// console.log(question);
-// question.value = 123;
-// console.log(question);
-
-// handle "tab" key --> auto fill '0's if the input field has not completed
