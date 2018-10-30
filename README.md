@@ -9,17 +9,23 @@
 
 ##To Do
 
-- form version account-input
 - favorite integration account-favorite
 - tests
+- Semantically release library https://blog.angularindepth.com/the-angular-devops-series-semantically-release-your-angular-library-7d78afb4c845
 
 ## Features
 
-'account-string'
+'uiowa-account-string'
 
 1. Correctly displays delimited string based on configuration of institution account
 1. Correctly displays accounts with missing elements like IACCT and can choose what to fill the string with
 1. Correctly ends the string without delimiter in the case of optional file missing or string ending with delimiter
+
+'uiowa-account-input'
+
+1. Correctly displays the form for MFK or UNI Account
+1. Allows you to have hidden portion like IACCT or ORG
+1. Allows users to paste in values where it validates size per input size to allow or deny pasting into form
 
 ## Development server
 
@@ -40,6 +46,14 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Build Library
+
+Run `npm run build:lib` to build the library
+
+## Push to NPM
+
+After building and updating the version run `npm publish ./dist/uiowa/uiowa-account --access=public`
 
 ## Further help
 
