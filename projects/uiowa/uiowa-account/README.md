@@ -24,11 +24,7 @@ const e1 = new Element('FUND', 3, 'FundElem', true);
 - `Account`: an object to represent the full accounting structure including value
 
 ```typescript
-const account = new Account(
-  '240-17-3215-03000-53515806--999-00000-21-7474-',
-  '-',
-  [e1]
-);
+const account = new Account('240-17-3215-03000-53515806--999-00000-21-7474-', '-', [e1]);
 ```
 
 ## Components
@@ -39,11 +35,13 @@ const account = new Account(
 
 ```html
 <uiowa-account-string [account]="account"></uiowa-account-string>
+
+<uiowa-account-input [account]="account"></uiowa-account-input>
 ```
 
 ```typescript
 import { Component } from '@angular/core';
-import { Account, Element } from 'projects/uiowa/uiowa-account/src/public_api';
+import { Account, Element } from '@uiowa/uiowa-account';
 
 @Component({
 ...

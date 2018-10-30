@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Account, Element, FieldOption } from 'projects/uiowa/uiowa-account/src/public_api';
-// import { Account, Element, FieldOption } from '@uiowa/uiowa-account';
+// import { Account, Element, FieldOption } from 'projects/uiowa/uiowa-account/src/public_api';
+import { Account, Element, FieldOption } from '@uiowa/uiowa-account';
 
 @Component({
   selector: 'app-root',
